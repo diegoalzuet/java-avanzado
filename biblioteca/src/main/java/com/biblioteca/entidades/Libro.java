@@ -18,15 +18,15 @@ public class Libro {
     @Column(name="fecha_publicacion")
     private Date fechaPublicacion;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="autor_id")
     private Autor autor;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="editorial_id")
     private Editorial editorial;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="categoria_id")
     private Categoria categoria;
 
@@ -89,6 +89,7 @@ public class Libro {
 
     @Override
     public String toString() {
+
         return "Libro{" +
                 "id=" + id +
                 ", titulo='" + titulo + '\'' +

@@ -23,7 +23,7 @@ public class Autor {
     @Column(name="nacionalidad")
     private String nacionalidad;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "autor_id")
     private List<Libro> libros;
 

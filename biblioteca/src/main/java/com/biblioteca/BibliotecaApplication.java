@@ -68,12 +68,27 @@ public class BibliotecaApplication implements CommandLineRunner {
 		Libro libro3 = new Libro("Los cuentos de Canterbury",date,autor2,editorial1,categoria1);
 		Libro libro4 = new Libro("Relatos cortos",date,autor2,editorial3,categoria2);
 
+		//CREATE
 		libroService.guardarLibro(libro1);
 		libroService.guardarLibro(libro2);
 		libroService.guardarLibro(libro3);
 		libroService.guardarLibro(libro4);
 
 		autorService.getAutores().forEach(autor -> System.out.println(autor));
+
+		//DELETE
+		System.out.println("=====DELETE====");
+		autorService.deleteAutor(1L);
+		autorService.getAutores().forEach(autor -> System.out.println(autor));
+
+		//UPDATE
+		System.out.println("=====UPDATE====");
+		Autor autorActualizar = new Autor("Diego Alzuet",date,"Brazil");
+		autorService.updateAutor(2L,autorActualizar);
+		autorService.getAutores().forEach(autor -> System.out.println(autor));
+
+		//READ
+		System.out.println("=====READ====");
 		editorialService.getEditoriales().forEach(editorial -> System.out.println(editorial));
 		categoriaService.getCategorias().forEach(categoria -> System.out.println(categoria));
 		libroService.getLibros().forEach(libro-> System.out.println(libro));

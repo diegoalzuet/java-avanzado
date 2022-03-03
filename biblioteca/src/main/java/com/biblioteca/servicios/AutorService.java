@@ -20,4 +20,15 @@ public class AutorService {
        return autorRepository.findById(id).orElse(null);
     }
 
+    public void deleteAutor(Long id){
+        autorRepository.deleteById(id);
+    }
+
+    public void updateAutor(Long id,Autor autor){
+        Autor autorActualizar = autorRepository.findById(id).orElse(null);
+        autorActualizar.setFechaNacimiento(autor.getFechaNacimiento());
+        autorActualizar.setNombre(autor.getNombre());
+        autorActualizar.setNacionalidad((autor.getNacionalidad()));
+        autorRepository.save(autorActualizar);
+    }
 }
