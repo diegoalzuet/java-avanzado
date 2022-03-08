@@ -1,6 +1,7 @@
 package com.interbanking.apivuelos.servicios;
 
 import com.interbanking.apivuelos.entidades.VueloEntity;
+import com.interbanking.apivuelos.excepciones.VueloNotFoundException;
 import com.interbanking.apivuelos.repositorio.VueloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class VueloService {
     }
 
     public VueloEntity obtenerUnVueloPorId(Long id) {
-        return vuelosRepository.findById(id).orElse(null);
+        return vuelosRepository.findById(id).orElseThrow(() -> new VueloNotFoundException(id));
     }
 
     public VueloEntity actualizarVueloPorId(Long id, VueloEntity vueloNuevo) {
