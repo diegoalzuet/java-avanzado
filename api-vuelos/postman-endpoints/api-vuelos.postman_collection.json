@@ -1,0 +1,402 @@
+{
+	"info": {
+		"_postman_id": "cebdba99-e180-4435-be25-26e1eae81f36",
+		"name": "api-vuelos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "vuelo",
+			"item": [
+				{
+					"name": "agregarVuelo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n    \"fechaHoraPartida\": \"2022-03-05T21:36:26.525+00:00\",\r\n    \"fechaHoraArribo\": \"2022-03-05T21:36:26.525+00:00\",\r\n    \"origen\": \"Brasil\",\r\n    \"destino\": \"España\",\r\n    \"pasajeros\": [],\r\n    \"avion\":null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/agregarVuelo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"agregarVuelo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerVuelos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/vuelos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"vuelos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerVueloPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/vuelos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"vuelos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modificarVuelo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 1,\r\n        \"fechaHoraPartida\": \"2022-03-07T13:00:56.362+00:00\",\r\n        \"fechaHoraArribo\": \"2022-03-07T13:00:56.362+00:00\",\r\n        \"origen\": \"CHINA\",\r\n        \"destino\": \"MEXICO\",\r\n        \"pasajeros\": []\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/vuelos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"vuelos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "borrarVueloPorId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/vuelos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"vuelos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "avion",
+			"item": [
+				{
+					"name": "obtenerAviones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/aviones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"aviones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerAvionPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/aviones/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"aviones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregarAvion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \r\n        \"cantidadAsientos\": 80,\r\n        \"vuelos\": []\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/agregarAvion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"agregarAvion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "borrarAvionPorId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/aviones/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"aviones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modificarAvion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"cantidadAsientos\": 150,\r\n    \"vuelos\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/aviones/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"aviones",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pasajeros",
+			"item": [
+				{
+					"name": "obtenerPasajeros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/pasajeros",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"pasajeros"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerPasajeroPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/pasajeros/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"pasajeros",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregarPasajero",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreCompleto\": \"Lionel Messi\",\r\n    \"dni\": \"54645489\",\r\n    \"vuelos\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/agregarPasajero",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"agregarPasajero"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "borrarPasajeroPorId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/pasajeros/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"pasajeros",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modificarPasajero",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n    \r\n    {\r\n      \r\n        \"nombreCompleto\": \"Ronaldo\",\r\n        \"dni\": \"2222222\"\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/apiVuelos/v1/pasajeros/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"apiVuelos",
+								"v1",
+								"pasajeros",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
