@@ -12,6 +12,8 @@ public class VueloDTO {
     private Date fechaHoraArribo;
     private String origen;
     private String destino;
+    private List<PasajeroEntity> pasajeros;
+    private AvionEntity avion;
 
     public VueloDTO(){
 
@@ -56,8 +58,6 @@ public class VueloDTO {
     public void setDestino(String destino) {
         this.destino = destino;
     }
-    private List<PasajeroEntity> pasajeros;
-    private AvionEntity avion;
 
     public VueloDTO(VueloEntity vuelo){
         this.id = vuelo.getId();

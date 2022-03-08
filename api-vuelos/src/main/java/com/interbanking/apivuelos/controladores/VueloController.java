@@ -23,18 +23,22 @@ public class VueloController {
                 .map(VueloDTO::new)
                 .collect(Collectors.toList());
     }
-    @PostMapping("/agregarVuelo")
-    VueloEntity agregarVuelo(@RequestBody VueloEntity vuelo){
-        return vueloService.agregarVuelo(vuelo);
-    }
+
     @GetMapping("/vuelos/{id}")
-    VueloEntity obtenerVuelo(@PathVariable Long id){
-        return vueloService.obtenerUnVueloPorId(id);
+    VueloDTO obtenerVuelo(@PathVariable Long id){
+        return new VueloDTO(vueloService.obtenerUnVueloPorId(id));
     }
+
+    @PostMapping("/agregarVuelo")
+    VueloDTO agregarVuelo(@RequestBody VueloEntity vuelo){
+        return new VueloDTO(vueloService.agregarVuelo(vuelo));
+    }
+
     @PutMapping("/vuelos/{id}")
     VueloEntity actualizarVuelo(@PathVariable Long id, @RequestBody VueloEntity vueloNuevo){
         return vueloService.actualizarVueloPorId(id,vueloNuevo);
     }
+
     @DeleteMapping("/vuelos/{id}")
     void borrarVuelo(@PathVariable Long id){
         vueloService.borrarVuelo(id);

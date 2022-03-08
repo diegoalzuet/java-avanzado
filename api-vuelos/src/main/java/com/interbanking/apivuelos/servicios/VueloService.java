@@ -33,9 +33,7 @@ public class VueloService {
                     vuelo.setOrigen(vueloNuevo.getOrigen());
                     vuelo.setPasajeros(vueloNuevo.getPasajeros());
                     return vuelosRepository.save(vuelo);
-                }).orElseGet(() -> {
-                    return vuelosRepository.save(vueloNuevo);
-                });
+                }).orElseGet(() -> vuelosRepository.save(vueloNuevo));
     }
 
     public void borrarVuelo(Long id){

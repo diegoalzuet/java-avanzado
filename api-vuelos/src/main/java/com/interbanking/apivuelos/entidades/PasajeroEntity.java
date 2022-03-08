@@ -17,7 +17,6 @@ public class PasajeroEntity {
     @Column(name="dni")
     private String dni;
 
-
     @ManyToMany(mappedBy = "pasajeros")
     private List<VueloEntity> vuelos;
 
@@ -53,7 +52,6 @@ public class PasajeroEntity {
     public void setDni(String dni) {
         this.dni = dni;
     }
-
 
     public List<VueloEntity> getVuelos() {
         return vuelos;

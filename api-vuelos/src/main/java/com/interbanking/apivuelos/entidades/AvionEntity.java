@@ -41,7 +41,6 @@ public class AvionEntity {
         this.cantidadAsientos = cantidadAsientos;
     }
 
-
     public List<VueloEntity> getVuelos() {
         return vuelos;
     }
