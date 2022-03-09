@@ -1,0 +1,305 @@
+{
+	"info": {
+		"_postman_id": "727ab22f-53b4-4274-8354-511cfddcbe41",
+		"name": "api-eureka",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Feign Carrito",
+			"item": [
+				{
+					"name": "getProductos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.221:2222/carrito",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"221"
+							],
+							"port": "2222",
+							"path": [
+								"carrito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.221:2222/carrito/2",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"221"
+							],
+							"port": "2222",
+							"path": [
+								"carrito",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addProducto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\":\"Gorra\",\r\n    \"stock\":120\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.221:2222/carrito/add",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"221"
+							],
+							"port": "2222",
+							"path": [
+								"carrito",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProducto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.221:2222/carrito/delete/2",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"221"
+							],
+							"port": "2222",
+							"path": [
+								"carrito",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProducto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\":\"FEIGN Gorra actualizada\",\r\n    \"stock\":666\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.221:2222/carrito/update/2",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"221"
+							],
+							"port": "2222",
+							"path": [
+								"carrito",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "getProductos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.221:2223/productos",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"221"
+							],
+							"port": "2223",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.221:2223/productos/22",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"221"
+							],
+							"port": "2223",
+							"path": [
+								"productos",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addProducto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\":\"Pantalon\",\r\n    \"stock\":100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.221:2223/productos/add",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"221"
+							],
+							"port": "2223",
+							"path": [
+								"productos",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProducto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\":\"Pantalon\",\r\n    \"stock\":100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.221:2223/productos/delete/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"221"
+							],
+							"port": "2223",
+							"path": [
+								"productos",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProducto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\":\"Articulo actualizado\",\r\n    \"stock\":333\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.221:2223/productos/update/2",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"221"
+							],
+							"port": "2223",
+							"path": [
+								"productos",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
