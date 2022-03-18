@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "2770b94c-7e76-4884-8dc6-ad2f5fb9a306",
+		"name": "apiTransacciones",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Persons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \r\n        \"name\": \"argento\",\r\n        \"age\": 19,\r\n        \"alias\":\"el pepe\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person Rollback",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \r\n        \"name\": \"Rollback\",\r\n        \"age\": 19,\r\n        \"alias\":\"rooooolback\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/personRollback",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personRollback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista con un campo Null",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"name\": \"AAAAAA\",\r\n        \"age\": 23,\r\n        \"alias\": \"BIGMAC\"\r\n    },\r\n    {\r\n        \"name\": \"BBBBBB\",\r\n        \"age\": 22,\r\n        \"alias\": \"PANCHO\"\r\n    },\r\n    {\r\n        \"name\": \"CCCCCC\",\r\n        \"age\": 21        \r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/listaConCampoNull",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"listaConCampoNull"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
