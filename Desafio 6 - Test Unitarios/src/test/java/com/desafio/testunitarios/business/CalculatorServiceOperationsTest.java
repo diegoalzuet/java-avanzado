@@ -15,6 +15,7 @@ import com.desafio.testunitarios.repository.OperationResultRepository;
 import com.desafio.testunitarios.service.CalculatorService;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest
@@ -81,6 +82,20 @@ class CalculatorServiceOperationsTest {
 
 		assertThat(result).isEqualTo(expected);		
 	}
+	
+	
+	 @Test
+	    void testCalculate_ShouldThrowMathematicalOperationNotValidException_WhenTryingToDivideByZero() {
+
+	        Operation incoming = new Operation(
+	                10.0,
+	                Operator.DIVIDE,
+	                0.0
+	        );
+
+	        assertThrows(MathematicalOperationNotValidException.class, () -> calculatorService.calculate(incoming));
+	    }
+	
 	@Test
 	void test_ListOperations() {
 		calculatorService.listOperations();
