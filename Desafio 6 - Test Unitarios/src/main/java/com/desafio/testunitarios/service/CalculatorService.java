@@ -18,9 +18,7 @@ import com.desafio.testunitarios.repository.OperationResultRepository;
 public class CalculatorService {
 	
 //	@Autowired
-	private OperationResultRepository operationResultRepository;
-	
-	
+	private OperationResultRepository operationResultRepository;	
 
     public CalculatorService(OperationResultRepository operationResultRepository) {	
 		this.operationResultRepository = operationResultRepository;
