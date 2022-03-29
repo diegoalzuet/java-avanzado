@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "7d9fd401-0024-4982-85b4-b3096d37bed2",
+		"name": "Desafio 7 : Java Generics",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":2,\r\n    \"nombre\":\"actualizado\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoidXNlciIsImV4cCI6MTY0ODYwNzM1MiwiaWF0IjoxNjQ4NTcxMzUyLCJzY29wZSI6IlJPTEVfVVNFUiJ9.si2bZ2iQ9TMRkjDDVAH6k6eUt6-qUsXwaVDQzn9oNJcBD8WeYPfJccvUwMx8XS8EhQ_YSdAIoQmz6JoK2075_wZswl1XHjG0JzxSdJ1bAud9rRrDBnvSXrRfWBc6bjHuyb0aci7QKgz5Fa8C3usesmpFucb24ptmYQil-wXyTqH0N574YFu9ufNJ4l6B2dF12C86tqBecgonoeCzB18Mack5hG9B45z4RPQN5cJJU6ZEPfkyJaw7HTMtrl0j3rM0UkGlcqx6l5eLwoynDFviFRaXUYSootwGIvYKXLP8A7bKKoVUN0pBN0M3Wdw29lAm2fyA07KoF72MEj7xHwphWA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"diego\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoidXNlciIsImV4cCI6MTY0ODYwNzM1MiwiaWF0IjoxNjQ4NTcxMzUyLCJzY29wZSI6IlJPTEVfVVNFUiJ9.si2bZ2iQ9TMRkjDDVAH6k6eUt6-qUsXwaVDQzn9oNJcBD8WeYPfJccvUwMx8XS8EhQ_YSdAIoQmz6JoK2075_wZswl1XHjG0JzxSdJ1bAud9rRrDBnvSXrRfWBc6bjHuyb0aci7QKgz5Fa8C3usesmpFucb24ptmYQil-wXyTqH0N574YFu9ufNJ4l6B2dF12C86tqBecgonoeCzB18Mack5hG9B45z4RPQN5cJJU6ZEPfkyJaw7HTMtrl0j3rM0UkGlcqx6l5eLwoynDFviFRaXUYSootwGIvYKXLP8A7bKKoVUN0pBN0M3Wdw29lAm2fyA07KoF72MEj7xHwphWA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"diego\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2NDg2MDc0NzksImlhdCI6MTY0ODU3MTQ3OSwic2NvcGUiOiJST0xFX0FETUlOIFJPTEVfVVNFUiJ9.VXS0eJ3gglFs5chq-09HQhQDKjkomE2QzRhh1Pgt3MiLyBEEj6cZaiUEkt68WMzf6XEhXJL0txF23DPa3VXZdH-oelaFlLwAU086IkHZ1c98RII0islGdU6bQubOe6lPo0PQ9N1xcfsWgiK8M0BrN2WYujASqREBP4jqbIGKN2k0Ft8VFAX51NkfzJ4axzgCQXR1euW5q9yHnDf2Gzw2ze5gE-YO7G-cIQIT_DtZurq_LMchUXKhhfONTkkaheBsCu-5nO5FTT5Hncm54V6XO0JCZkDtDrYpv0FH4-yg1YiIsio2SaEUU8wWvIYl7Lclsgd7zWWZYhueYZ7eorKFUA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2NDg2MDc0NzksImlhdCI6MTY0ODU3MTQ3OSwic2NvcGUiOiJST0xFX0FETUlOIFJPTEVfVVNFUiJ9.VXS0eJ3gglFs5chq-09HQhQDKjkomE2QzRhh1Pgt3MiLyBEEj6cZaiUEkt68WMzf6XEhXJL0txF23DPa3VXZdH-oelaFlLwAU086IkHZ1c98RII0islGdU6bQubOe6lPo0PQ9N1xcfsWgiK8M0BrN2WYujASqREBP4jqbIGKN2k0Ft8VFAX51NkfzJ4axzgCQXR1euW5q9yHnDf2Gzw2ze5gE-YO7G-cIQIT_DtZurq_LMchUXKhhfONTkkaheBsCu-5nO5FTT5Hncm54V6XO0JCZkDtDrYpv0FH4-yg1YiIsio2SaEUU8wWvIYl7Lclsgd7zWWZYhueYZ7eorKFUA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"diego\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"diego\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/jwt",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"jwt"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
