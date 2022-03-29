@@ -1,11 +1,11 @@
 package com.desafio.generics.impl.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
+import org.springframework.stereotype.Repository;
+import com.desafio.generics.generic.repository.GenericRepository;
 import com.desafio.generics.impl.entity.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends GenericRepository<User,Long>  {
 
 }

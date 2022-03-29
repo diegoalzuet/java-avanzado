@@ -5,13 +5,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.desafio.generics.generic.entity.GenericEntity;
+import com.desafio.generics.generic.repository.GenericRepository;
 
 
 public class GenericService<T extends GenericEntity<T, ID>,ID> {
 	
-	private final JpaRepository<T, ID> repository;
+	//private final JpaRepository<T, ID> repository;
+	private final GenericRepository<T, ID> repository;
 	
-	public GenericService(JpaRepository<T, ID> repository) {
+	public GenericService(GenericRepository<T, ID> repository) {
 		this.repository = repository;
 	}
 	
