@@ -1,11 +1,14 @@
 package com.proyecto.apiatencionmedica.repositories;
 
 import com.proyecto.apiatencionmedica.entities.Paciente;
-import org.springframework.data.repository.CrudRepository;
+import com.proyecto.apiatencionmedica.generic.repository.GenericRepository;
 
 import java.util.List;
 
-public interface PacienteRepository extends CrudRepository<Paciente,Integer> {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PacienteRepository extends GenericRepository<Paciente,Integer> {
 
     public List<Paciente> findAll();
 

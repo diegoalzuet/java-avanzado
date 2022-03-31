@@ -2,9 +2,11 @@ package com.proyecto.apiatencionmedica.entities;
 
 import javax.persistence.*;
 
+import com.proyecto.apiatencionmedica.generic.entity.GenericEntity;
+
 @Entity
 @Table(name = "signos_vitales")
-public class SignoVital {
+public class SignoVital implements GenericEntity<SignoVital, Integer>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,13 +1,16 @@
 package com.proyecto.apiatencionmedica.entities;
 
 import javax.persistence.*;
+
+import com.proyecto.apiatencionmedica.generic.entity.GenericEntity;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "pacientes")
-public class Paciente {
+public class Paciente implements GenericEntity<Paciente, Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

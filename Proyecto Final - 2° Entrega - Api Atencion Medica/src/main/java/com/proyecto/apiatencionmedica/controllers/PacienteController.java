@@ -44,7 +44,13 @@ public class PacienteController {
     PacienteDTO agregarPaciente(@RequestBody Paciente pacienteNuevo){
         return pacienteService.agregarPaciente(pacienteNuevo);
     }
-
+    
+    //AGREGA UNA LISTA DE PACIENTES
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+    @PostMapping("/agregarPacientes")
+    List<PacienteDTO> agregarListaPacientes(@RequestBody List<Paciente> lista){
+    	return pacienteService.agregarListaPacientes(lista);
+    }
     //AGREGA UN SIGNO VITAL A UN PACIENTE
     @PreAuthorize("hasAuthority('SCOPE_ROLE_EMPLOYEE')")
     @PutMapping("/agregarSignoVitalAPaciente/{idPaciente}")
@@ -65,4 +71,19 @@ public class PacienteController {
     void borrarPaciente(@PathVariable Integer idPaciente){
         pacienteService.borrarPaciente(idPaciente);
     }
+    
+    //BORRAR UN PACIENTE Y SUS SIGNOS VITALES (GENERIC)
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+    @DeleteMapping("/borrarPacienteG/{idPaciente}")
+    void borrarPacienteG(@PathVariable Integer idPaciente){
+        pacienteService.deleteById(idPaciente);
+    }
+    
+    //COUNT (GENERIC)
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+    @GetMapping("/count")
+    Long count() {
+    	return pacienteService.count();
+    }
+    
 }
