@@ -1,8 +1,8 @@
 package com.proyecto.apiatencionmedica.services;
 
-import com.proyecto.apiatencionmedica.controllers.reponseDTO.SignoVitalDTO;
 import com.proyecto.apiatencionmedica.entities.Paciente;
 import com.proyecto.apiatencionmedica.entities.SignoVital;
+import com.proyecto.apiatencionmedica.reponseDTO.SignoVitalDTO;
 import com.proyecto.apiatencionmedica.repositories.SignoVitalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

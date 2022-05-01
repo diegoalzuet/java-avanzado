@@ -3,7 +3,6 @@ package com.proyecto.apiatencionmedica.entities;
 import javax.persistence.*;
 
 import com.proyecto.apiatencionmedica.generic.entity.GenericEntity;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,13 +24,18 @@ public class Paciente implements GenericEntity<Paciente, Integer> {
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<SignoVital> signosVitales;
 
-    public Paciente() {
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="username")
+    private User username;
+    
+	public Paciente() {
     }
 
     public Paciente(String nombreCompleto, Date fechaNacimiento, List<SignoVital> signosVitales) {
         this.nombreCompleto = nombreCompleto;
         this.fechaNacimiento = fechaNacimiento;
-        this.signosVitales = signosVitales;
+        this.signosVitales = signosVitales;       
+        
     }
     public void addSignoVital(SignoVital signoVital){
         if (this.signosVitales==null)
@@ -64,6 +68,15 @@ public class Paciente implements GenericEntity<Paciente, Integer> {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+    
+    public User getUsername() {
+		return username;
+	}
+
+	public void setUsername(User username) {
+		this.username = username;
+	}
+
 
     public List<SignoVital> getSignosVitales() {
         return signosVitales;

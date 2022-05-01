@@ -9,6 +9,7 @@ import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
@@ -39,11 +40,23 @@ public class JwtConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    	
         http
-                .authorizeHttpRequests((authorize) -> authorize
-                        .anyRequest().authenticated()
-                )
-                .csrf((csrf) -> csrf.ignoringAntMatchers("/api/jwt"))
+                .authorizeHttpRequests((authorize) -> {
+                	authorize
+                	.antMatchers("/api-medica-docs/**").permitAll()
+                	.antMatchers("/swagger-ui/**").permitAll()                	
+                    .antMatchers(HttpMethod.GET,"/api/users/**").permitAll()
+                    .antMatchers(HttpMethod.POST,"/api/users/**").permitAll()
+                    .antMatchers(HttpMethod.PUT,"/api/users/**").permitAll()
+                    .antMatchers(HttpMethod.DELETE,"/api/users/user/**").permitAll()
+                	.anyRequest().authenticated();
+                })        		
+                .csrf((csrf) -> {
+                	csrf.ignoringAntMatchers("/api/jwt");
+                	csrf.ignoringAntMatchers("/api/users/**");                	
+                	csrf.ignoringAntMatchers("/swagger-ui/**"); 
+                })
                 .httpBasic(Customizer.withDefaults())
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -53,7 +66,6 @@ public class JwtConfiguration {
                 );
         return http.build();
     }
-
 
     @Bean
     UserDetailsService users(DataSource dataSource) {

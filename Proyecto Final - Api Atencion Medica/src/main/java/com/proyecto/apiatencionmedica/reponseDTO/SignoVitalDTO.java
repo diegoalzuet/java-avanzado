@@ -1,4 +1,4 @@
-package com.proyecto.apiatencionmedica.controllers.reponseDTO;
+package com.proyecto.apiatencionmedica.reponseDTO;
 
 
 import com.proyecto.apiatencionmedica.entities.SignoVital;

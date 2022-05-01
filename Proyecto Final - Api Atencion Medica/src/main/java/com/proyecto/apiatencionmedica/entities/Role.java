@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "authorities")
-public class Rol {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,21 +12,21 @@ public class Rol {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username",referencedColumnName = "username")
-    private Personal username;
+    private User username;
 
     @Column(name = "authority")
     private String authority;
 
-    public Rol() {
+    public Role() {
     }
 
-    public Rol(String rol){
+    public Role(String role){
         this.username = null;
-        this.authority = rol;
+        this.authority = role;
     }
-    public Rol(Personal username, String rol) {
+    public Role(User username, String role) {
         this.username = username;
-        this.authority = rol;
+        this.authority = role;
     }
 
     public Integer getId() {
@@ -37,19 +37,19 @@ public class Rol {
         this.id = id;
     }
 
-    public Personal getUsername() {
+    public User getUsername() {
         return username;
     }
 
-    public void setUsername(Personal username) {
+    public void setUsername(User username) {
         this.username = username;
     }
 
-    public String getRol() {
+    public String getRole() {
         return authority;
     }
 
-    public void setRol(String rol) {
-        this.authority = rol;
+    public void setRol(String role) {
+        this.authority = role;
     }
 }

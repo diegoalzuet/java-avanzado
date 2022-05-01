@@ -16,9 +16,9 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.proyecto.apiatencionmedica.controllers.PacienteController;
-import com.proyecto.apiatencionmedica.controllers.reponseDTO.PacienteDTO;
 import com.proyecto.apiatencionmedica.entities.Paciente;
 import com.proyecto.apiatencionmedica.entities.SignoVital;
+import com.proyecto.apiatencionmedica.reponseDTO.PacienteDTO;
 import com.proyecto.apiatencionmedica.services.PacienteService;
 
 @ExtendWith(MockitoExtension.class)

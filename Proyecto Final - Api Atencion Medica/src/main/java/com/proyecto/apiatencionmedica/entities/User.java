@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class Personal {
+public class User {
 
     @Id
     @Column(name = "username")
@@ -18,16 +18,19 @@ public class Personal {
     private Boolean enabled;
 
     @OneToMany(mappedBy = "username", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Rol> rol;
+    private List<Role> roles;
+    
+    @OneToOne(cascade=CascadeType.REMOVE, optional=true)
+    private Paciente paciente;
 
-    public Personal() {
+    public User() {
     }
 
-    public Personal(String username, String password, Boolean activo, List<Rol> rol) {
+    public User(String username, String password, Boolean activo, List<Role> roles) {
         this.username = username;
         this.password = password;
         this.enabled = activo;
-        this.rol = rol;
+        this.roles = roles;
     }
 
     public String getUsername() {
@@ -54,11 +57,19 @@ public class Personal {
         this.enabled = activo;
     }
 
-    public List<Rol> getRol() {
-        return rol;
+    public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRol(List<Rol> rol) {
-        this.rol = rol;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

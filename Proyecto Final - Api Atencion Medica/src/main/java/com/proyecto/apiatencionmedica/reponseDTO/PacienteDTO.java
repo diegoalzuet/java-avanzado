@@ -1,7 +1,6 @@
-package com.proyecto.apiatencionmedica.controllers.reponseDTO;
+package com.proyecto.apiatencionmedica.reponseDTO;
 
 import com.proyecto.apiatencionmedica.entities.Paciente;
-import com.proyecto.apiatencionmedica.entities.SignoVital;
 
 import java.util.ArrayList;
 import java.util.Date;

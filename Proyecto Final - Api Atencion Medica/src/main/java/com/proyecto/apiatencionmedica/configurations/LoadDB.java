@@ -1,35 +1,33 @@
 package com.proyecto.apiatencionmedica.configurations;
 
-import com.proyecto.apiatencionmedica.entities.Personal;
-import com.proyecto.apiatencionmedica.entities.Rol;
-import com.proyecto.apiatencionmedica.repositories.PersonalRepository;
-import com.proyecto.apiatencionmedica.repositories.RolRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import com.proyecto.apiatencionmedica.entities.Role;
+import com.proyecto.apiatencionmedica.entities.User;
+import com.proyecto.apiatencionmedica.repositories.RoleRepository;
+import com.proyecto.apiatencionmedica.repositories.UserRepository;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 public class LoadDB {
 
     @Bean
-    CommandLineRunner initDB(PersonalRepository personalRepository, RolRepository rolRepository){
+    CommandLineRunner initDB(UserRepository personalRepository, RoleRepository roleRepository){
 
         String password = "$2a$10$V/ytPioYtBjQX/oLdvAj8.9FcX0CNPhVIBAm9qocykPsdrObPMe46"; //1234
 
-        Personal personalCaso1 = new Personal("admin",password,true,null);
-        Personal personalCaso2 = new Personal("employee",password,true,null);
-        Personal personalCaso3 = new Personal("user",password,true,null);
+        User doctor = new User("doctor",password,true,null);
+        User nurse = new User("nurse",password,true,null);
+        User user = new User("user",password,true,null);
 
-         return args -> rolRepository.saveAll(Arrays.asList(
-                new Rol(personalCaso1, "ROLE_ADMIN"),
-                new Rol(personalCaso1, "ROLE_EMPLOYEE"),
-                new Rol(personalCaso1, "ROLE_USER"),
-                new Rol(personalCaso2, "ROLE_EMPLOYEE"),
-                new Rol(personalCaso2, "ROLE_USER"),
-                new Rol(personalCaso3, "ROLE_USER")));
+         return args -> roleRepository.saveAll(Arrays.asList(
+                new Role(doctor, "ROLE_DOCTOR"),
+                new Role(doctor, "ROLE_NURSE"),
+                new Role(doctor, "ROLE_USER"),
+                new Role(nurse, "ROLE_NURSE"),
+                new Role(nurse, "ROLE_USER"),
+                new Role(user, "ROLE_USER")));
     }
 }
