@@ -1,5 +1,6 @@
 package com.proyecto.apiatencionmedica;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -8,12 +9,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.proyecto.apiatencionmedica.controllers.PacienteController;
 import com.proyecto.apiatencionmedica.entities.Paciente;
@@ -37,19 +41,33 @@ public class PacienteControllerTest {
 	}
 	
 	@Test
-	void test_obtenerPacientePorId() {
+	void test_obtenerPacientePorIdOk() {
 		PacienteDTO paciente = new PacienteDTO();
 		Mockito.when(pacienteService.obtenerPacientePorId(1)).thenReturn(paciente);
-		pacienteController.obtenerPacientePorId(1);
-		verify(pacienteService,times(1)).obtenerPacientePorId(1);
+		ResponseEntity<?> rs  = pacienteController.obtenerPacientePorId(1);
+		assertEquals(HttpStatus.OK, rs.getStatusCode());
 	}
 	
 	@Test
-	void test_obtenerPacientePorNombre() {
+	void test_obtenerPacientePorIdNotFound() {		
+		Mockito.when(pacienteService.obtenerPacientePorId(1)).thenReturn(null);
+		ResponseEntity<?> rs  =pacienteController.obtenerPacientePorId(1);
+		assertEquals(HttpStatus.NOT_FOUND, rs.getStatusCode());
+	}
+	@Test
+	void test_obtenerPacientePorNombreOk() {
 		PacienteDTO paciente = new PacienteDTO();
 		Mockito.when(pacienteService.obtenerPacientePorNombre("Diego")).thenReturn(paciente);
-		pacienteController.obtenerPacientePorNombre("Diego");
+		ResponseEntity<?> rs = pacienteController.obtenerPacientePorNombre("Diego");
+		assertEquals(HttpStatus.OK, rs.getStatusCode());
 		verify(pacienteService,times(1)).obtenerPacientePorNombre("Diego");
+	}
+	
+	@Test
+	void test_obtenerPacientePorNombreNotFound() {
+		Mockito.when(pacienteService.obtenerPacientePorNombre("Diego")).thenReturn(null);
+		ResponseEntity<?> rs =  pacienteController.obtenerPacientePorNombre("Diego");
+		assertEquals(HttpStatus.NOT_FOUND, rs.getStatusCode());
 	}
 	
 	@Test
@@ -70,26 +88,47 @@ public class PacienteControllerTest {
 	}
 	
 	@Test
-	void test_agregarSignoVital() {
+	void test_agregarSignoVitalCreated() {
 		SignoVital signoVital = new SignoVital();
 		Mockito.when(pacienteService.agregarSignoVital(1, signoVital)).thenReturn(new PacienteDTO());
-		pacienteController.agregarSignoVital(1, signoVital);
-		verify(pacienteService,times(1)).agregarSignoVital(1, signoVital);
+		ResponseEntity<?> rs = pacienteController.agregarSignoVital(1, signoVital);
+		assertEquals(HttpStatus.CREATED, rs.getStatusCode());
+	}
+	@Test
+	void test_agregarSignoVitalNotFound() {
+		SignoVital signoVital = new SignoVital();
+		Mockito.when(pacienteService.agregarSignoVital(1, signoVital)).thenReturn(null);
+		ResponseEntity<?> rs = pacienteController.agregarSignoVital(1, signoVital);
+		assertEquals(HttpStatus.NOT_FOUND, rs.getStatusCode());
 	}
 	
 	@Test
-	void test_actualizarPaciente() {
+	void test_actualizarPacienteCreated() {
 		Paciente nuevoPaciente = new Paciente();
 		Mockito.when(pacienteService.actualizarPaciente(1, nuevoPaciente)).thenReturn(new PacienteDTO());
-		pacienteController.actualizarPaciente(1, nuevoPaciente);
-		verify(pacienteService,times(1)).actualizarPaciente(1, nuevoPaciente);
+		ResponseEntity<?> rs = pacienteController.actualizarPaciente(1, nuevoPaciente);
+		assertEquals(HttpStatus.CREATED, rs.getStatusCode());
+	}
+	@Test
+	void test_actualizarPacienteNotFound() {
+		Paciente nuevoPaciente = new Paciente();
+		Mockito.when(pacienteService.actualizarPaciente(1, nuevoPaciente)).thenReturn(null);
+		ResponseEntity<?> rs = pacienteController.actualizarPaciente(1, nuevoPaciente);
+		assertEquals(HttpStatus.NOT_FOUND, rs.getStatusCode());
 	}
 	
 	@Test
-	void test_borrarPaciente() {
-		doNothing().when(pacienteService).borrarPaciente(1);
-		pacienteController.borrarPaciente(1);
-		verify(pacienteService,times(1)).borrarPaciente(1);
+	void test_borrarPacienteNoContent() {
+		Mockito.when(pacienteService.borrarPaciente(1)).thenReturn(true);
+		ResponseEntity<?> rs = pacienteController.borrarPaciente(1);		
+		assertEquals(HttpStatus.NO_CONTENT, rs.getStatusCode());		
+	}
+	
+	@Test
+	void test_borrarPacienteNotFound() {
+		Mockito.when(pacienteService.borrarPaciente(1)).thenReturn(false);
+		ResponseEntity<?> rs = pacienteController.borrarPaciente(1);		
+		assertEquals(HttpStatus.NOT_FOUND, rs.getStatusCode());		
 	}
 	
 	@Test

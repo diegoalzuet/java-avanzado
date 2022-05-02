@@ -32,7 +32,7 @@ public class SignoVitalController {
 	@PreAuthorize("hasAuthority('SCOPE_ROLE_NURSE')")
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	List<SignoVitalDTO> listarSignosVitales() {
+	public List<SignoVitalDTO> listarSignosVitales() {
 		return signoVitalService.listarSignosVitales();
 	}
 
@@ -41,7 +41,7 @@ public class SignoVitalController {
 	@PreAuthorize("hasAuthority('SCOPE_ROLE_NURSE')")
 	@GetMapping("/paciente")
 	@ResponseStatus(code = HttpStatus.OK)
-	List<SignoVitalDTO> listarSignosVitalesPorPaciente(@RequestBody Paciente paciente) {
+	public List<SignoVitalDTO> listarSignosVitalesPorPaciente(@RequestBody Paciente paciente) {
 		return signoVitalService.listarSignosVitalesPorPaciente(paciente);
 	}
 
@@ -53,7 +53,7 @@ public class SignoVitalController {
 			@ApiResponse(responseCode = "404", description = "No se encontro el signo vital especificado especificado", content = @Content(mediaType = "application/json")) })
 	@PreAuthorize("hasAuthority('SCOPE_ROLE_NURSE')")
 	@PutMapping("/paciente/{idSignoVital}")
-	ResponseEntity<List<SignoVitalDTO>> actualizarSignosVitales(@RequestBody SignoVital signoVital,
+	public ResponseEntity<List<SignoVitalDTO>> actualizarSignosVitales(@RequestBody SignoVital signoVital,
 			@PathVariable Integer idSignoVital) {
 		List<SignoVitalDTO> signos = signoVitalService.actualizarSignosVitales(signoVital, idSignoVital);
 		return (signos != null) ? ResponseEntity.status(HttpStatus.CREATED).body(signos)
@@ -65,7 +65,7 @@ public class SignoVitalController {
 	@PreAuthorize("hasAuthority('SCOPE_ROLE_DOCTOR')")
 	@DeleteMapping("/paciente/{idSignoVital}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	void eliminarSignoVital(@PathVariable Integer idSignoVital) {
+	public void eliminarSignoVital(@PathVariable Integer idSignoVital) {
 		signoVitalService.eliminarSignoVital(idSignoVital);
 	}
 }

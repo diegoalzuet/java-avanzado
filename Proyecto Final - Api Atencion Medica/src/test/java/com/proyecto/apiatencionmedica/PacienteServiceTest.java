@@ -1,8 +1,6 @@
 package com.proyecto.apiatencionmedica;
 
-import static org.assertj.core.api.Assertions.offset;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.doNothing;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -15,14 +13,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import com.proyecto.apiatencionmedica.entities.Paciente;
 import com.proyecto.apiatencionmedica.entities.SignoVital;
+import com.proyecto.apiatencionmedica.reponseDTO.PacienteDTO;
 import com.proyecto.apiatencionmedica.repositories.PacienteRepository;
 import com.proyecto.apiatencionmedica.services.PacienteService;
 
@@ -80,10 +76,11 @@ public class PacienteServiceTest {
 	@Disabled
 	void test_agregarPaciente() {
 		Paciente paciente = new Paciente();
+		paciente.setNombreCompleto("diego");
 		List<SignoVital> signos = Arrays.asList(new SignoVital(),new SignoVital());
 		paciente.setSignosVitales(signos);
 		
-		when(pacienteRepository.save(paciente)).thenReturn(paciente);
+		when(pacienteRepository.save(paciente)).thenReturn(paciente);		
 		pacienteService.agregarPaciente(paciente);
 	}
 	
@@ -115,22 +112,32 @@ public class PacienteServiceTest {
 		pacienteService.agregarSignoVital(1, null);		
 	}
 	
-	@Test
+	@Disabled
 	void test_actualizarPaciente() {
 		Paciente paciente = new Paciente();
 		paciente.setId(1);
+		paciente.setNombreCompleto("diego");
+		paciente.setFechaNacimiento(new Date());
 		List<SignoVital> signos = Arrays.asList(new SignoVital(),new SignoVital());
 		paciente.setSignosVitales(signos);
 		
-		when(pacienteRepository.findById(1)).thenReturn(Optional.of(paciente));
-		when(pacienteRepository.save(paciente)).thenReturn(paciente);
-		pacienteService.actualizarPaciente(1, paciente);		
+		Mockito.when(pacienteRepository.findById(1)).thenReturn(Optional.of(paciente));	
+		//when(pacienteServiceMock.actualizarPaciente(1, paciente)).thenReturn(new PacienteDTO(paciente));
+		pacienteService.actualizarPaciente(1, paciente);	
+		
 	}
 	
 	@Test
-	void test_borrarPaciente() {
-		Mockito.doNothing().when(pacienteRepository).deleteById(1);
-		pacienteService.borrarPaciente(1);
+	void test_borrarPacienteTrue() {		
+		Mockito.when(pacienteRepository.existsById(1)).thenReturn(true);
+		boolean result = pacienteService.borrarPaciente(1);
+		assertEquals(true, result);
+	}
+	@Test
+	void test_borrarPacienteFalse() {		
+		Mockito.when(pacienteRepository.existsById(1)).thenReturn(false);
+		boolean result = pacienteService.borrarPaciente(1);
+		assertEquals(false, result);
 	}
 
 }
