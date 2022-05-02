@@ -49,7 +49,7 @@ public class UserController {
 			@ApiResponse(responseCode = "201", description = "Usuario agregado satisfactoriamente", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserDTO.class))) })
 	@PostMapping("/user")
 	public ResponseEntity<UserDTO> saveUser(@RequestBody User user) {
-		return ResponseEntity.ok().body(userService.saveUser(user));
+		return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(user));
 	}
 
 	@Operation(summary = "Agregar un Rol", description = "Servicio para agregar un Rol.")
@@ -57,7 +57,7 @@ public class UserController {
 			@ApiResponse(responseCode = "201", description = "Rol agregado satisfactoriamente", content = @Content(mediaType = "application/json", schema = @Schema(implementation = RoleDTO.class))) })
 	@PostMapping("/role")
 	public ResponseEntity<RoleDTO> saveRole(@RequestBody Role role) {
-		return ResponseEntity.ok().body(userService.saveRole(role));
+		return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveRole(role));
 	}
 
 	@Operation(summary = "Agregar un rol a un usuario", description = "Servicio para asignar un rol a un usuario.")
@@ -67,7 +67,7 @@ public class UserController {
 	@PutMapping("/user/rol")
 	public ResponseEntity<UserDTO> setRole(@RequestParam String username, @RequestParam String roleName) {
 		UserDTO userDTO = userService.addRoleToUser(username, roleName);
-		return (userDTO != null ? ResponseEntity.ok().body(userDTO) : ResponseEntity.notFound().build());
+		return (userDTO != null ? ResponseEntity.status(HttpStatus.CREATED).body(userDTO) : ResponseEntity.notFound().build());
 	}
 
 	@Operation(summary = "Borrar un usuario", description = "Servicio para borrar un usuario.")
@@ -76,7 +76,7 @@ public class UserController {
 			@ApiResponse(responseCode = "404", description = "No se encontro el usuario especificado", content = @Content(mediaType = "application/json")) })
 	@DeleteMapping("/user/{username}")
 	public ResponseEntity<?> deleteUser(@PathVariable String username) {
-		return (userService.deleteUser(username) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build());
+		return (userService.deleteUser(username) ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() : ResponseEntity.notFound().build());
 	}
 
 }
