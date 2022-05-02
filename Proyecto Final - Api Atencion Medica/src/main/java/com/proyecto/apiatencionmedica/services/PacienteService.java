@@ -21,12 +21,13 @@ import java.util.stream.Collectors;
 @Service
 public class PacienteService extends GenericService<Paciente, Integer> {
 
-	@Autowired
+	
 	private PasswordEncoder passwordEncoder;
 
 	@Autowired
-	public PacienteService(PacienteRepository pacienteRepository) {
+	public PacienteService(PacienteRepository pacienteRepository, PasswordEncoder passwordEncoder) {
 		super(pacienteRepository);
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	public List<PacienteDTO> listarPacientes() {

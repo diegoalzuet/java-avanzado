@@ -1,6 +1,8 @@
 package com.proyecto.apiatencionmedica;
 
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -16,6 +18,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.proyecto.apiatencionmedica.entities.Paciente;
 import com.proyecto.apiatencionmedica.entities.SignoVital;
 import com.proyecto.apiatencionmedica.reponseDTO.PacienteDTO;
@@ -27,12 +31,14 @@ public class PacienteServiceTest {
 	
 	@Mock
 	PacienteRepository pacienteRepository;
+	@Mock
+	PasswordEncoder passwordEncoder;
 	
 	private PacienteService pacienteService;
 	
 	@BeforeEach
 	void Setup() {
-		pacienteService = new PacienteService(pacienteRepository);
+		pacienteService = new PacienteService(pacienteRepository,passwordEncoder);
 	}
 	
 	@Test
@@ -74,26 +80,16 @@ public class PacienteServiceTest {
 	}
 	
 	@Disabled
-	void test_agregarPaciente() {
-		Paciente paciente = new Paciente();
-		paciente.setNombreCompleto("diego");
-		List<SignoVital> signos = Arrays.asList(new SignoVital(),new SignoVital());
-		paciente.setSignosVitales(signos);
-		
-		when(pacienteRepository.save(paciente)).thenReturn(paciente);		
-		pacienteService.agregarPaciente(paciente);
-	}
-	
-	@Test
 	void test_agregarListaPacientes() {
 		List<SignoVital> signos = Arrays.asList(new SignoVital(),new SignoVital());
-		Paciente paciente1 = new Paciente();
-		paciente1.setId(1);		
-		paciente1.setSignosVitales(signos);
-		Paciente paciente2 = new Paciente("diego",new Date(),signos);
-		paciente2.setId(2);
-		List<Paciente> pacientes = Arrays.asList(paciente1,paciente2);
 		
+		Paciente paciente1 = new Paciente("test",new Date(),signos);
+		paciente1.setId(1);					
+		Paciente paciente2 = new Paciente("diego",new Date(),signos);
+		
+		List<Paciente> pacientes = Arrays.asList(paciente1,paciente2);	
+		//Mockito.when(pacienteRepository.save(paciente2)).thenReturn(paciente3);
+		Mockito.when(pacienteRepository.save(pacientes.get(0))).thenReturn(any(Paciente.class));
 		pacienteService.agregarListaPacientes(pacientes);
 	}
 	
@@ -112,19 +108,25 @@ public class PacienteServiceTest {
 		pacienteService.agregarSignoVital(1, null);		
 	}
 	
-	@Disabled
-	void test_actualizarPaciente() {
+	@Test
+	void test_actualizarPacienteOk() {
 		Paciente paciente = new Paciente();
 		paciente.setId(1);
 		paciente.setNombreCompleto("diego");
 		paciente.setFechaNacimiento(new Date());
 		List<SignoVital> signos = Arrays.asList(new SignoVital(),new SignoVital());
-		paciente.setSignosVitales(signos);
-		
-		Mockito.when(pacienteRepository.findById(1)).thenReturn(Optional.of(paciente));	
-		//when(pacienteServiceMock.actualizarPaciente(1, paciente)).thenReturn(new PacienteDTO(paciente));
-		pacienteService.actualizarPaciente(1, paciente);	
-		
+		paciente.setSignosVitales(signos);		
+		Mockito.when(pacienteRepository.findById(1)).thenReturn(Optional.of(paciente));				
+		Mockito.when(pacienteRepository.save(paciente)).thenReturn(paciente);
+		PacienteDTO dto = pacienteService.actualizarPaciente(1, paciente);
+		assertEquals(1, dto.getId());		
+	}
+	
+	@Test
+	void test_actualizarPacienteNotFound() {
+		Paciente paciente = new Paciente();				
+		Mockito.when(pacienteRepository.findById(1)).thenReturn(Optional.empty());				
+		assertNull(pacienteService.actualizarPaciente(1, paciente));
 	}
 	
 	@Test

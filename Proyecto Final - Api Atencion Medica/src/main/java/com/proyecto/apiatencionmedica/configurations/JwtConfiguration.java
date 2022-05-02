@@ -42,7 +42,7 @@ public class JwtConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     	
         http
-                .authorizeHttpRequests((authorize) -> {
+                .authorizeHttpRequests(authorize -> 
                 	authorize
                 	.antMatchers("/api-medica-docs/**").permitAll()
                 	.antMatchers("/swagger-ui/**").permitAll()                	
@@ -50,9 +50,9 @@ public class JwtConfiguration {
                     .antMatchers(HttpMethod.POST,"/api/users/**").permitAll()
                     .antMatchers(HttpMethod.PUT,"/api/users/**").permitAll()
                     .antMatchers(HttpMethod.DELETE,"/api/users/user/**").permitAll()
-                	.anyRequest().authenticated();
-                })        		
-                .csrf((csrf) -> {
+                	.anyRequest().authenticated()
+                )        		
+                .csrf(csrf -> {
                 	csrf.ignoringAntMatchers("/api/jwt");
                 	csrf.ignoringAntMatchers("/api/users/**");                	
                 	csrf.ignoringAntMatchers("/swagger-ui/**"); 
@@ -60,7 +60,7 @@ public class JwtConfiguration {
                 .httpBasic(Customizer.withDefaults())
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling((exceptions) -> exceptions
+                .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
                         .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
                 );
